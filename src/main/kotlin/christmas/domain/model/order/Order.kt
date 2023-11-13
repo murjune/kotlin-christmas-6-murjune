@@ -2,11 +2,12 @@ package christmas.domain.model.order
 
 import christmas.domain.model.menu.Menu
 import christmas.domain.type.ErrorType
+import christmas.domain.type.MealType
 
 data class Order(val menu: Menu, val menuCount: Int) {
 
     init {
-        require(menuCount <= MIN_MENU_COUNT) { ErrorType.ORDER.message }
+        require(menuCount >= MIN_MENU_COUNT) { ErrorType.ORDER.message }
     }
 
     override fun toString() = "${menu.name} ${menuCount}개"
