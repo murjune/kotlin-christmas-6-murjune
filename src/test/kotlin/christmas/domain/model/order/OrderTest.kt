@@ -10,7 +10,7 @@ import org.junit.jupiter.api.assertThrows
 internal class OrderTest {
     @Test
     fun `메뉴는 1개 이상 주문 해야한다`() {
-        assertThrows<IllegalArgumentException>(ErrorType.ORDER.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.ORDER.toString()) {
             Order(Menu("고기", 1000, MealType.MAIN), 0)
         }
     }

@@ -14,7 +14,7 @@ internal class DateTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 32])
     fun `1 ~ 31이 아닌 day 는 Date 객체를 만들 수 없다`(dayOfMonth: Int) {
-        assertThrows<IllegalArgumentException>(ErrorType.DATE.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.DATE.toString()) {
             Date(dayOfMonth)
         }
     }

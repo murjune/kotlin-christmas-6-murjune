@@ -10,7 +10,7 @@ import org.junit.jupiter.api.assertThrows
 class TotalOrderTest {
     @Test
     fun `메뉴는 한 번에 최대 20개까지만 주문 가능`() {
-        assertThrows<IllegalArgumentException>(ErrorType.ORDER.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.ORDER.toString()) {
             TotalOrder(
                 listOf(Order(Menu("고기", 1, MealType.MAIN), 21))
             )
@@ -19,7 +19,7 @@ class TotalOrderTest {
 
     @Test
     fun `음료만 주문할 수 없다`() {
-        assertThrows<IllegalArgumentException>(ErrorType.ORDER.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.ORDER.toString()) {
             TotalOrder(
                 listOf(
                     Order(
@@ -33,7 +33,7 @@ class TotalOrderTest {
 
     @Test
     fun `중복 음료 주문할 수 없다`() {
-        assertThrows<IllegalArgumentException>(ErrorType.ORDER.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.ORDER.toString()) {
             TotalOrder(
                 listOf(
                     Order(

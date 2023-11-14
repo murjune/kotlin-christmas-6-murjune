@@ -24,17 +24,17 @@ class TotalOrderTransformer(
     }
 
     private fun validateCanSplit(order: List<String>) {
-        require(order.size >= 2) { ErrorType.ORDER.message }
+        require(order.size >= 2) { ErrorType.ORDER.toString() }
     }
 
     private fun provideMenu(menuName: String): Menu {
         return menuBoard.findOrNull(menuName)
-            ?: throw IllegalArgumentException(ErrorType.ORDER.message)
+            ?: throw IllegalArgumentException(ErrorType.ORDER.toString())
     }
 
     private fun provideMenuCount(count: String): Int {
         return count.toIntOrNull()
-            ?: throw IllegalArgumentException(ErrorType.ORDER.message)
+            ?: throw IllegalArgumentException(ErrorType.ORDER.toString())
     }
 
     companion object {

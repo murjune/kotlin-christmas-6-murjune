@@ -51,7 +51,7 @@ class TotalOrderTransformerTest {
         // given
         val preOrders = listOf("물고기*2")
         // then
-        assertThrows<IllegalArgumentException>(ErrorType.ORDER.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.ORDER.toString()) {
             // when
             transformer.transform(preOrders)
         }
@@ -62,7 +62,7 @@ class TotalOrderTransformerTest {
         // given
         val preOrders = listOf("물고기-a")
         // then
-        assertThrows<IllegalArgumentException>(ErrorType.ORDER.message) {
+        assertThrows<IllegalArgumentException>(ErrorType.ORDER.toString()) {
             // when
             transformer.transform(preOrders)
         }
