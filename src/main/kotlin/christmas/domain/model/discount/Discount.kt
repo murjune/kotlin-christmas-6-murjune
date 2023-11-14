@@ -10,7 +10,7 @@ data class Discount(
     fun canApply() = profit > 0
 
     override fun toString(): String {
-        return "${type}: -$profit}"
+        return "${type}: -$profit"
     }
 
     companion object {
