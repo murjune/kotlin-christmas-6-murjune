@@ -26,34 +26,46 @@ class OutPutView {
         println(order)
     }
 
-    fun writeTotalOrderPrice(price: String) {
+    fun writeOrderPrice(price: String) {
         println("<할인 전 총주문 금액>")
         println(price)
+        println()
     }
 
     fun writeGift(gift: String) {
         println("<증정 메뉴>")
         println(gift)
+        println()
     }
 
-    fun writeProfits(profits: List<String>) {
+    fun writeProfitHistory(profits: List<String>) {
         println("<혜택 내역>")
         profits.forEach { println(it) }
+        println()
+    }
+
+    fun writeNoProfit() {
+        println("<혜택 내역>")
+        println("없음")
+        println()
     }
 
     fun writeSumOfProfit(profit: String) {
         println("<총혜택 금액>")
         println(profit)
+        println()
     }
 
     fun writePaymentPreview(payment: String) {
         println("<할인 후 예상 결제 금액>")
         println(payment)
+        println()
     }
 
     fun writeEventBadge(badge: Badge){
         println("<12월 이벤트 배지>")
         println(badge)
+        println()
     }
 
     fun writeError(message: String) {
