@@ -10,12 +10,12 @@ data class Discount(
     fun canApply() = profit > 0
 
     override fun toString(): String {
-        return "${type}: -$profit"
+        return "${type}: -${profit}원"
     }
 
     companion object {
-        fun sumOfProfit(christmas: Discount, daily: Discount, special: Discount): Int {
-            return christmas.profit + daily.profit + special.profit
+        fun sumOfProfit(discounts: List<Discount>): Int {
+            return discounts.sumOf { it.profit }
         }
     }
 }
