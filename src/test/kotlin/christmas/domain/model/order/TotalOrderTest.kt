@@ -62,4 +62,26 @@ class TotalOrderTest {
         // then
         assertThat(expectedPrice).isEqualTo(actualPrice)
     }
+
+    @Test
+    fun `총 주문 금액이 12만원 이상이면 샴페인을 증정`() {
+        // given
+        val order = TotalOrder(
+            listOf(
+                Order(Menu("고기", 10_000, MealType.MAIN), 12),
+            )
+        )
+        val nonGiftOrder = TotalOrder(
+            listOf(
+                Order(Menu("고기", 11_999, MealType.MAIN), 1),
+            )
+        )
+        val expectedGift = Menu("샴페인", 25_000, MealType.DESSERT)
+        // when
+        val actualGift = order.provideGift()
+        val nonGift = nonGiftOrder.provideGift()
+        // then
+        assertThat(actualGift).isEqualTo(expectedGift)
+        assertThat(nonGift).isNull()
+    }
 }

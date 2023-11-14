@@ -1,9 +1,10 @@
 package christmas.domain.model.order
 
+import christmas.domain.model.menu.Menu
 import christmas.domain.type.ErrorType
 import christmas.domain.type.MealType
 
-data class TotalOrder(val orders: List<Order>) {
+data class TotalOrder(private val orders: List<Order>) {
 
     init {
         require(orders.size <= LIMIT_ORDER_SIZE) { ErrorType.ORDER.message }
@@ -12,6 +13,8 @@ data class TotalOrder(val orders: List<Order>) {
     }
 
     fun calculatePrice() = orders.sumOf { order -> order.calculatePrice() }
+
+    fun provideGift(): Menu? = cachedMenu.takeIf { calculatePrice() >= GIVE_AWAY_LIMIT }
     override fun toString(): String {
         return StringBuilder().apply {
             orders.forEach { order ->
@@ -21,6 +24,8 @@ data class TotalOrder(val orders: List<Order>) {
     }
 
     companion object {
+        private val cachedMenu = Menu("샴페인", 25_000, MealType.DESSERT)
+        private const val GIVE_AWAY_LIMIT = 120_000
         private const val LIMIT_ORDER_SIZE = 20
         private const val NEW_LINE = "\n"
     }
