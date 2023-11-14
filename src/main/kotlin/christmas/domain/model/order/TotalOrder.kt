@@ -7,9 +7,9 @@ import christmas.domain.type.MealType
 data class TotalOrder(private val orders: List<Order>) {
 
     init {
-        require(orders.size <= LIMIT_ORDER_SIZE) { ErrorType.ORDER.message }
-        require(orders.size == orders.distinct().size) { ErrorType.ORDER.message }
-        require(orders.all { it.menu.type == MealType.DRINK }.not()) { ErrorType.ORDER.message }
+        require(orders.size <= LIMIT_ORDER_SIZE) { ErrorType.ORDER.toString() }
+        require(isDuplicated()) { ErrorType.ORDER.toString() }
+        require(isAllDrink()) { ErrorType.ORDER.toString() }
     }
 
     fun calculatePrice() = orders.sumOf { order -> order.calculatePrice() }
@@ -18,7 +18,10 @@ data class TotalOrder(private val orders: List<Order>) {
 
     fun isEventExecutable(): Boolean = calculatePrice() >= EVENT_LIMIT
 
-    fun toList() = orders.flatMap { (menu, count) -> List(count) { menu } }
+    fun toMenuList() = orders.flatMap { it.toMenuList() }
+
+    private fun isDuplicated() = orders.size == orders.distinct().size
+    private fun isAllDrink() = orders.all { it.isType(MealType.DRINK) }.not()
     override fun toString(): String {
         return StringBuilder().apply {
             orders.forEach { order ->
