@@ -1,4 +1,4 @@
-package christmas.discount
+package christmas.domain.model.discount
 
 import christmas.domain.model.Date
 import christmas.domain.model.discount.ChristmasDiscounter

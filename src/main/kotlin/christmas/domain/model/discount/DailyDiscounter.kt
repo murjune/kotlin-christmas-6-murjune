@@ -13,12 +13,12 @@ class DailyDiscounter(private val date: Date, private val menus: List<Menu>) : D
     }
 
     private fun calculateWeekDayDiscount(): Int {
-        val dessertCount = menus.count { it.type == MealType.DESSERT }
+        val dessertCount = menus.count { it.isType(MealType.DESSERT) }
         return dessertCount * DISCOUNT_UNIT
     }
 
     private fun calculateWeekendDiscount(): Int {
-        val mainCount = menus.count { it.type == MealType.MAIN }
+        val mainCount = menus.count { it.isType(MealType.MAIN) }
         return mainCount * DISCOUNT_UNIT
     }
 
