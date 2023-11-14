@@ -3,6 +3,7 @@ package christmas.domain.model.order
 import christmas.domain.model.menu.Menu
 import christmas.domain.type.ErrorType
 import christmas.domain.type.MealType
+import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -44,5 +45,21 @@ class TotalOrderTest {
                 )
             )
         }
+    }
+
+    @Test
+    fun `총 주문 금액을 계산`() {
+        // given
+        val totalOrder = TotalOrder(
+            listOf(
+                Order(Menu("고기", 1000, MealType.MAIN), 2),
+                Order(Menu("물고기", 2000, MealType.MAIN), 2),
+            )
+        )
+        val expectedPrice = 6000
+        // when
+        val actualPrice = totalOrder.calculatePrice()
+        // then
+        assertThat(expectedPrice).isEqualTo(actualPrice)
     }
 }

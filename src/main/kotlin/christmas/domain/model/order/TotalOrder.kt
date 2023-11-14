@@ -11,6 +11,7 @@ data class TotalOrder(val orders: List<Order>) {
         require(orders.all { it.menu.type == MealType.DRINK }.not()) { ErrorType.ORDER.message }
     }
 
+    fun calculatePrice() = orders.sumOf { order -> order.calculatePrice() }
     override fun toString(): String {
         return StringBuilder().apply {
             orders.forEach { order ->
