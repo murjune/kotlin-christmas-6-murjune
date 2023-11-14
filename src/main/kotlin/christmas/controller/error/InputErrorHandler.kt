@@ -8,8 +8,6 @@ class InputErrorHandler : ErrorHandler {
     ) {
         try {
             return action()
-        } catch (e: NoSuchElementException) {
-            write(ERROR_MESSAGE_FORMAT.format(NO_LINE_ERROR))
         } catch (e: IllegalArgumentException) {
             write(ERROR_MESSAGE_FORMAT.format(e.message))
         } catch (e: IllegalStateException) {
