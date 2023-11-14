@@ -7,9 +7,9 @@ import christmas.domain.type.MealType
 data class TotalOrder(private val orders: List<Order>) {
 
     init {
-        require(orders.size <= LIMIT_ORDER_SIZE) { ErrorType.ORDER.toString() }
         require(isDuplicated()) { ErrorType.ORDER.toString() }
         require(isAllDrink()) { ErrorType.ORDER.toString() }
+        require(isSizeOver()) { ErrorType.ORDER.toString() }
     }
 
     fun calculatePrice() = orders.sumOf { order -> order.calculatePrice() }
@@ -19,6 +19,7 @@ data class TotalOrder(private val orders: List<Order>) {
     fun isEventExecutable(): Boolean = calculatePrice() >= EVENT_LIMIT
 
     fun toMenuList() = orders.flatMap { it.toMenuList() }
+    private fun isSizeOver() = toMenuList().size <= LIMIT_ORDER_SIZE
 
     private fun isDuplicated() = orders.size == orders.distinct().size
     private fun isAllDrink() = orders.all { it.isType(MealType.DRINK) }.not()

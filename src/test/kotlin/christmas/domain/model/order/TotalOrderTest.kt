@@ -90,12 +90,12 @@ class TotalOrderTest {
         // given
         val order = TotalOrder(
             listOf(
-                Order(Menu("고기", 10_000, MealType.MAIN),1),
+                Order(Menu("고기", 10_000, MealType.MAIN), 1),
             )
         )
         val nonEventOrder = TotalOrder(
             listOf(
-                Order(Menu("고기", 9999, MealType.MAIN),1),
+                Order(Menu("고기", 9999, MealType.MAIN), 1),
             )
         )
         // then
