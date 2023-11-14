@@ -1,8 +1,10 @@
 package christmas.domain.model
 
+import christmas.domain.type.ErrorType
+
 data class Date(private val dayOfMonth: Int, private val specialDays: List<Int> = listOf(3, 10, 17, 24, 25, 31)) {
     init {
-        require(dayOfMonth in DAY_RANGE)
+        require(dayOfMonth in DAY_RANGE) { ErrorType.DATE.toString() }
     }
 
     fun isWeekday() = ((dayOfMonth + DAY_WEIGHT_UNIT) % MOD_UNIT) in WEEKDAY_RANGE
