@@ -1,10 +1,14 @@
 package christmas.domain.model
 
-enum class Badge(val label: String, val price: Int) {
+enum class Badge(private val label: String, private val price: Int) {
     STAR("별", 5_000),
     TREE("트리", 10_000),
     SANTA("산타", 20_000),
     NONE("없음", 0);
+
+    override fun toString(): String {
+        return label
+    }
 
     companion object {
         private const val ERROR_MESSAGE_FORMAT = "예상치 못한 값 %d가 들어왔습니다."
