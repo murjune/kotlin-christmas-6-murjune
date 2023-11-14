@@ -25,4 +25,28 @@ internal class OrderTest {
         // then
         assertThat(price).isEqualTo(expectedPrice)
     }
+
+    @Test
+    fun `주문한 메뉴가 특정 음식 종류인지 검사`() {
+        // given
+        val order = Order(Menu("고기", 1000, MealType.MAIN), 1)
+        // when
+        val actual = order.isType(MealType.MAIN)
+        // then
+        assertThat(actual).isTrue()
+    }
+    @Test
+    fun `주문 Menu 리스트로 변환`() {
+        // given
+        val order = Order(Menu("고기", 1000, MealType.MAIN), 3)
+        val expectedMenus = listOf(
+            Menu("고기", 1000, MealType.MAIN),
+            Menu("고기", 1000, MealType.MAIN),
+            Menu("고기", 1000, MealType.MAIN)
+        )
+        // when
+        val actualMenuList = order.toMenuList()
+        // then
+        assertThat(actualMenuList).isEqualTo(expectedMenus)
+    }
 }

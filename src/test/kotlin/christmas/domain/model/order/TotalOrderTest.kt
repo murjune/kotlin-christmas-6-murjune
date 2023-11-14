@@ -119,7 +119,7 @@ class TotalOrderTest {
             Menu("물고기", 10_000, MealType.MAIN)
         )
         // when
-        val actualMenus = order.toList()
+        val actualMenus = order.toMenuList()
         // then
         assertThat(actualMenus).isEqualTo(expectedMenus)
     }
