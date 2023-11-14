@@ -17,6 +17,8 @@ data class TotalOrder(private val orders: List<Order>) {
     fun provideGift(): Menu? = cachedMenu.takeIf { calculatePrice() >= GIVE_AWAY_LIMIT }
 
     fun isEventExecutable(): Boolean = calculatePrice() >= EVENT_LIMIT
+
+    fun toList() = orders.flatMap { (menu, count) -> List(count) { menu } }
     override fun toString(): String {
         return StringBuilder().apply {
             orders.forEach { order ->

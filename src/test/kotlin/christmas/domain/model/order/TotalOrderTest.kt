@@ -102,4 +102,25 @@ class TotalOrderTest {
         assertThat(order.isEventExecutable()).isTrue()
         assertThat(nonEventOrder.isEventExecutable()).isFalse()
     }
+
+    @Test
+    fun `TotalOrder 객체를 주문한 Menu List 로 변환 가능`() {
+        //given
+        val order = TotalOrder(
+            listOf(
+                Order(Menu("고기", 10_000, MealType.MAIN), 2),
+                Order(Menu("물고기", 10_000, MealType.MAIN), 2),
+            )
+        )
+        val expectedMenus = listOf(
+            Menu("고기", 10_000, MealType.MAIN),
+            Menu("고기", 10_000, MealType.MAIN),
+            Menu("물고기", 10_000, MealType.MAIN),
+            Menu("물고기", 10_000, MealType.MAIN)
+        )
+        // when
+        val actualMenus = order.toList()
+        // then
+        assertThat(actualMenus).isEqualTo(expectedMenus)
+    }
 }
