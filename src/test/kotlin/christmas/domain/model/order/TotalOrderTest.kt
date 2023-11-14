@@ -84,4 +84,22 @@ class TotalOrderTest {
         assertThat(actualGift).isEqualTo(expectedGift)
         assertThat(nonGift).isNull()
     }
+
+    @Test
+    fun `총 주문 금액이 1만원 이상이면 이벤트 진행`() {
+        // given
+        val order = TotalOrder(
+            listOf(
+                Order(Menu("고기", 10_000, MealType.MAIN),1),
+            )
+        )
+        val nonEventOrder = TotalOrder(
+            listOf(
+                Order(Menu("고기", 9999, MealType.MAIN),1),
+            )
+        )
+        // then
+        assertThat(order.isEventExecutable()).isTrue()
+        assertThat(nonEventOrder.isEventExecutable()).isFalse()
+    }
 }
