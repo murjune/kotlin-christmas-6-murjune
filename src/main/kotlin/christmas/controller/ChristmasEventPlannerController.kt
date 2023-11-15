@@ -94,7 +94,7 @@ class ChristmasEventPlannerController {
     }
 
     private fun showProfitView() {
-        val discounts = calculateDiscounts()
+        val discounts = generateDiscounts()
         showProfitHistory(discounts)
         showSumOfProfitView(discounts)
     }
@@ -127,15 +127,12 @@ class ChristmasEventPlannerController {
         outPutView.writeEventBadge(badge)
     }
 
-    private fun calculateDiscounts(): List<Discount> {
-        return mutableListOf<Discount>().apply {
-            val christmasDiscount = ChristmasDiscounter(today, dayOfMonth).create()
-            val dailyDiscount = DailyDiscounter(today, orderMenus).create()
-            val specialDiscount = SpecialDiscounter(today).create()
-            if (christmasDiscount.canApply()) add(christmasDiscount)
-            if (dailyDiscount.canApply()) add(dailyDiscount)
-            if (specialDiscount.canApply()) add(specialDiscount)
-        }
+    private fun generateDiscounts(): List<Discount> {
+        return listOf(
+            ChristmasDiscounter(today, dayOfMonth).create(),
+            DailyDiscounter(today, orderMenus).create(),
+            SpecialDiscounter(today).create()
+        ).filter { discount -> discount.canApply() }
     }
 
     private fun Int.toPriceFormat() = PRICE_FORMAT.format(priceFormatter.format(this))
