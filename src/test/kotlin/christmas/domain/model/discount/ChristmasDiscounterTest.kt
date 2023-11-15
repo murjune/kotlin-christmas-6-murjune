@@ -14,8 +14,8 @@ internal class ChristmasDiscounterTest {
         val firstDayDiscounter = ChristmasDiscounter(VisitDate(firstDay), firstDay)
         val endDayDiscounter = ChristmasDiscounter(VisitDate(endDay), endDay)
         // when
-        val firstDayDiscount = firstDayDiscounter.discount()
-        val endDayDiscount = endDayDiscounter.discount()
+        val firstDayDiscount = firstDayDiscounter.create()
+        val endDayDiscount = endDayDiscounter.create()
         // then
         assertThat(firstDayDiscount).isEqualTo(Discount(1000, DiscountType.CHRISTMAS))
         assertThat(endDayDiscount).isEqualTo(Discount(3400, DiscountType.CHRISTMAS))
@@ -28,7 +28,7 @@ internal class ChristmasDiscounterTest {
         val afterChristmasDay = 26
         val discounter = ChristmasDiscounter(VisitDate(afterChristmasDay), afterChristmasDay)
         // when
-        val noneDiscount = discounter.discount()
+        val noneDiscount = discounter.create()
         // then
         assertThat(noneDiscount).isEqualTo(Discount(0, DiscountType.CHRISTMAS))
     }

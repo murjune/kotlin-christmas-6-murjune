@@ -7,7 +7,7 @@ import christmas.domain.type.MealType
 
 class DailyDiscounter(private val date: VisitDate, private val menus: List<Menu>) : Discounter {
 
-    override fun discount(): Discount {
+    override fun create(): Discount {
         if (date.isWeekday()) return Discount(calculateWeekDayDiscount(), DiscountType.WEEK_DAY)
         return Discount(calculateWeekendDiscount(), DiscountType.WEEKEND)
     }

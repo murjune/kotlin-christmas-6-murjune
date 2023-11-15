@@ -5,7 +5,7 @@ import christmas.domain.model.discount.type.DiscountType
 
 class SpecialDiscounter(private val date: VisitDate) : Discounter {
 
-    override fun discount(): Discount {
+    override fun create(): Discount {
         if (date.isSpecialDay()) return Discount(DISCOUNT, DiscountType.SPECIAL)
         return Discount(NO_DISCOUNT, DiscountType.SPECIAL)
     }

@@ -14,8 +14,8 @@ class SpecialDiscounterTest {
         val specialDate = VisitDate(1, specialDays)
         val nonSpecialDate = VisitDate(3, specialDays)
         // when
-        val specialDiscount = SpecialDiscounter(specialDate).discount()
-        val nonDiscount = SpecialDiscounter(nonSpecialDate).discount()
+        val specialDiscount = SpecialDiscounter(specialDate).create()
+        val nonDiscount = SpecialDiscounter(nonSpecialDate).create()
         // then
         assertThat(specialDiscount).isEqualTo(Discount(1000, DiscountType.SPECIAL))
         assertThat(nonDiscount).isEqualTo(Discount(0, DiscountType.SPECIAL))

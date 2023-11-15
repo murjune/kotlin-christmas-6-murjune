@@ -131,9 +131,9 @@ class ChristmasPromotionController {
 
     private fun calculateDiscounts(): List<Discount> {
         return mutableListOf<Discount>().apply {
-            val christmasDiscount = ChristmasDiscounter(today, dayOfMonth).discount()
-            val dailyDiscount = DailyDiscounter(today, orderMenus).discount()
-            val specialDiscount = SpecialDiscounter(today).discount()
+            val christmasDiscount = ChristmasDiscounter(today, dayOfMonth).create()
+            val dailyDiscount = DailyDiscounter(today, orderMenus).create()
+            val specialDiscount = SpecialDiscounter(today).create()
             if (christmasDiscount.canApply()) add(christmasDiscount)
             if (dailyDiscount.canApply()) add(dailyDiscount)
             if (specialDiscount.canApply()) add(specialDiscount)

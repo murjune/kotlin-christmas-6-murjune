@@ -23,7 +23,7 @@ internal class DailyDiscounterTest {
                 )
             )
         // when
-        val discount = discounter.discount()
+        val discount = discounter.create()
         // then
         assertThat(discount).isEqualTo(Discount(2023, DiscountType.WEEK_DAY))
     }
@@ -42,7 +42,7 @@ internal class DailyDiscounterTest {
                 )
             )
         // when
-        val discount = discounter.discount()
+        val discount = discounter.create()
         // then
         assertThat(discount).isEqualTo(Discount(2023, DiscountType.WEEKEND))
     }

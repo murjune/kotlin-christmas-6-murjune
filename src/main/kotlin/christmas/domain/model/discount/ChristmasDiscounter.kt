@@ -7,7 +7,7 @@ import christmas.domain.model.discount.type.DiscountType
 class ChristmasDiscounter(private val date: VisitDate, private val dayOfMonth: Int) :
     Discounter {
 
-    override fun discount(): Discount {
+    override fun create(): Discount {
         if (date.isAfter(CHRISTMAS_DAY)) return Discount(NO_DISCOUNT, DiscountType.CHRISTMAS)
         return Discount(calculateDiscount(), DiscountType.CHRISTMAS)
     }
