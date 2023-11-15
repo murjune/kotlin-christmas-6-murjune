@@ -22,7 +22,7 @@ data class TotalOrder(private val orders: List<Order>) {
     private fun isSizeOver() = toMenuList().size <= LIMIT_ORDER_SIZE
 
     private fun isDuplicated() = orders.size == orders.distinct().size
-    private fun isAllDrink() = orders.all { it.isType(MealType.DRINK) }.not()
+    private fun isAllDrink() = orders.all { it.isMealType(MealType.DRINK) }.not()
     override fun toString(): String {
         return StringBuilder().apply {
             orders.forEach { order ->

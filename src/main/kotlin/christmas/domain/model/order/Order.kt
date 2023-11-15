@@ -14,7 +14,7 @@ data class Order(private val menu: Menu, private val menuCount: Int) {
 
     fun toMenuList() = List(menuCount) { menu }
 
-    fun isType(type: MealType) = menu.isType(type)
+    fun isMealType(type: MealType) = menu.isMealType(type)
     override fun toString() = "$menu ${menuCount}개"
 
     companion object {

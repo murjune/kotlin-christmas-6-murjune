@@ -8,7 +8,7 @@ data class Menu(private val name: String, private val price: Int, private val ty
 
     fun isName(menuName: String) = (name == menuName)
 
-    fun isType(mealType: MealType) = (mealType == type)
+    fun isMealType(mealType: MealType) = (mealType == type)
 
     override fun toString() = name
 }

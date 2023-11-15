@@ -31,7 +31,7 @@ internal class OrderTest {
         // given
         val order = Order(Menu("고기", 1000, MealType.MAIN), 1)
         // when
-        val actual = order.isType(MealType.MAIN)
+        val actual = order.isMealType(MealType.MAIN)
         // then
         assertThat(actual).isTrue()
     }

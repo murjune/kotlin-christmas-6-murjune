@@ -1,8 +1,6 @@
 package christmas.domain.model.menu
 
-import christmas.domain.model.order.Order
 import christmas.domain.type.MealType
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -34,7 +32,7 @@ class MenuTest {
         // given
         val menu = Menu("고기", 1000, MealType.MAIN)
         // when
-        val actual = menu.isType(MealType.MAIN)
+        val actual = menu.isMealType(MealType.MAIN)
         // then
         assertThat(actual).isTrue()
     }
