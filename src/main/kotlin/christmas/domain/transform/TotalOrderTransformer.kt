@@ -2,7 +2,7 @@ package christmas.domain.transform
 
 import christmas.domain.model.order.Order
 import christmas.domain.model.order.TotalOrder
-import christmas.domain.type.ErrorType
+import christmas.domain.error.ErrorType
 import christmas.domain.model.menu.Menu
 import christmas.domain.model.menu.MenuBoard
 

@@ -1,6 +1,6 @@
 package christmas.controller.validator
 
-import christmas.domain.type.ErrorType
+import christmas.domain.error.ErrorType
 
 class DateInputValidator : InputValidator {
 

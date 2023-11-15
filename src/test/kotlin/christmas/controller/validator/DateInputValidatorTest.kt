@@ -1,6 +1,6 @@
 package christmas.controller.validator
 
-import christmas.domain.type.ErrorType
+import christmas.domain.error.ErrorType
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

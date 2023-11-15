@@ -1,6 +1,6 @@
 package christmas.domain.model
 
-import christmas.domain.type.ErrorType
+import christmas.domain.error.ErrorType
 
 data class VisitDate(private val dayOfMonth: Int, private val specialDays: List<Int> = listOf(3, 10, 17, 24, 25, 31)) {
     init {

@@ -1,7 +1,7 @@
 package christmas.domain.model.order
 
 import christmas.domain.model.menu.Menu
-import christmas.domain.type.ErrorType
+import christmas.domain.error.ErrorType
 import christmas.domain.type.MealType
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
