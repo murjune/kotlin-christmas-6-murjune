@@ -9,7 +9,7 @@ data class VisitDate(private val dayOfMonth: Int, private val specialDays: List<
 
     fun isWeekday() = ((dayOfMonth + DAY_WEIGHT_UNIT) % MOD_UNIT) in WEEKDAY_RANGE
 
-    fun isSpecial() = dayOfMonth in specialDays
+    fun isSpecialDay() = dayOfMonth in specialDays
 
     fun isBefore(dayOfMonth: Int) = this.dayOfMonth < dayOfMonth
 

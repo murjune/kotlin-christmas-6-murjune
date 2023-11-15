@@ -34,8 +34,8 @@ internal class DateTest {
         val specialDate = VisitDate(dayOfMonth = 1, specialDays = listOf(1))
         val generalDate = VisitDate(dayOfMonth = 2, specialDays = listOf(1))
         // then
-        assertThat(specialDate.isSpecial()).isTrue()
-        assertThat(generalDate.isSpecial()).isFalse()
+        assertThat(specialDate.isSpecialDay()).isTrue()
+        assertThat(generalDate.isSpecialDay()).isFalse()
 
     }
 
