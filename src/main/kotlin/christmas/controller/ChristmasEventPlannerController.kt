@@ -18,7 +18,7 @@ import christmas.service.MenuService
 import christmas.view.InputView
 import christmas.view.OutPutView
 
-class ChristmasPromotionController {
+class ChristmasEventPlannerController {
     private val inputView = InputView()
     private val outPutView = OutPutView()
     private val errorHandler: ErrorHandler = InputErrorHandler()

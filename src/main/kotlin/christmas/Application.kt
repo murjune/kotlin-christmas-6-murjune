@@ -1,7 +1,7 @@
 package christmas
 
-import christmas.controller.ChristmasPromotionController
+import christmas.controller.ChristmasEventPlannerController
 
 fun main() {
-    ChristmasPromotionController().start()
+    ChristmasEventPlannerController().start()
 }
