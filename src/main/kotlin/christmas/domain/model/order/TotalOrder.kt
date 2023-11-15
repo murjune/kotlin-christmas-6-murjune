@@ -14,8 +14,6 @@ data class TotalOrder(private val orders: List<Order>) {
 
     fun calculatePrice() = orders.sumOf { order -> order.calculatePrice() }
 
-    fun provideGift(): Menu? = cachedMenu.takeIf { calculatePrice() >= GIVE_AWAY_LIMIT }
-
     fun isEventExecutable(): Boolean = calculatePrice() >= EVENT_LIMIT
 
     fun toMenuList() = orders.flatMap { it.toMenuList() }

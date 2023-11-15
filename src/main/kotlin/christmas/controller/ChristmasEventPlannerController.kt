@@ -5,6 +5,7 @@ import christmas.controller.error.InputErrorHandler
 import christmas.controller.format.PriceFormatter
 import christmas.controller.validator.DateInputValidator
 import christmas.domain.model.Badge
+import christmas.domain.model.Gift
 import christmas.domain.model.VisitDate
 import christmas.domain.model.discount.ChristmasDiscounter
 import christmas.domain.model.discount.DailyDiscounter
@@ -23,13 +24,14 @@ class ChristmasEventPlannerController {
     private val outPutView = OutPutView()
     private val errorHandler: ErrorHandler = InputErrorHandler()
     private lateinit var today: VisitDate
-    private var dayOfMonth = 0
+    private var dayOfMonth = NOT_INITIALIZE
     private val menuBoard: MenuBoard = MenuBoard(MenuService.provideMenus())
     private val orderTransformer = TotalOrderTransformer(menuBoard)
     private lateinit var totalOrder: TotalOrder
     private lateinit var orderMenus: List<Menu>
-    private var totalPrice = 0
-    private var totalProfits = 0
+    private lateinit var gift: Gift
+    private var totalPrice = NOT_INITIALIZE
+    private var totalProfits = NOT_INITIALIZE
     private val priceFormatter = PriceFormatter()
 
     fun start() {
@@ -87,30 +89,30 @@ class ChristmasEventPlannerController {
     }
 
     private fun showGiftView() {
-        val gift = totalOrder.provideGift()?.let {
-            CHAMPAGNE
-        } ?: NO_EVENT
-        outPutView.writeGift(gift)
+        gift = Gift.of(totalPrice)
+        outPutView.writeGift(gift.toString())
     }
 
     private fun showProfitView() {
         val discounts = calculateDiscounts()
-        val gift = provideGift()
-        showProfitHistory(discounts, gift)
-        showSumOfProfitView(discounts, gift)
+        showProfitHistory(discounts)
+        showSumOfProfitView(discounts)
     }
 
-    private fun showProfitHistory(discounts: List<Discount>, gift: String?) {
+    private fun showProfitHistory(discounts: List<Discount>) {
         if (totalOrder.isEventExecutable().not()) return outPutView.writeNoProfit()
         val discountProfits = discounts.map { it.toString() }
-        val giftProfits = gift?.let { listOf(GIFT_PROFIT_MESSAGE) } ?: listOf()
-        outPutView.writeProfitHistory(discountProfits + giftProfits)
+        val giftProfits = gift.calculateProfit()
+        if (giftProfits > 0) {
+            return outPutView.writeProfitHistory(discountProfits + giftProfits.toGiftFormat())
+        }
+        outPutView.writeProfitHistory(discountProfits)
     }
 
-    private fun showSumOfProfitView(discounts: List<Discount>, gift: String?) {
+    private fun showSumOfProfitView(discounts: List<Discount>) {
         if (totalOrder.isEventExecutable().not()) return outPutView.writeSumOfProfit(0.toPriceFormat())
         val discountProfits = Discount.sumOfProfit(discounts)
-        val giftProfit = gift?.let { GIFT_PROFIT } ?: NO_PROFIT
+        val giftProfit = gift.calculateProfit()
         totalProfits = discountProfits + giftProfit
         outPutView.writeSumOfProfit(totalProfits.toProfitFormat())
     }
@@ -125,10 +127,6 @@ class ChristmasEventPlannerController {
         outPutView.writeEventBadge(badge)
     }
 
-    private fun provideGift(): String? = totalOrder.provideGift()?.let {
-        GIFT_PROFIT_MESSAGE
-    }
-
     private fun calculateDiscounts(): List<Discount> {
         return mutableListOf<Discount>().apply {
             val christmasDiscount = ChristmasDiscounter(today, dayOfMonth).create()
@@ -140,16 +138,16 @@ class ChristmasEventPlannerController {
         }
     }
 
-    private fun Int.toPriceFormat() = priceFormatter.format(this) + WON
-    private fun Int.toProfitFormat() = MINUS + priceFormatter.format(this) + WON
+    private fun Int.toPriceFormat() = PRICE_FORMAT.format(priceFormatter.format(this))
+
+    private fun Int.toProfitFormat() = PROFIT_FORMAT.format(priceFormatter.format(this))
+
+    private fun Int.toGiftFormat() = GIFT_PROFIT_FORMAT.format(this)
 
     private companion object {
-        const val MINUS = "-"
-        const val WON = "원"
-        const val CHAMPAGNE = "샴페인 1개"
-        const val NO_EVENT = "없음"
-        const val GIFT_PROFIT_MESSAGE = "증정 이벤트: -25,000원"
-        const val GIFT_PROFIT = 25000
-        const val NO_PROFIT = 0
+        const val NOT_INITIALIZE = 0
+        const val PRICE_FORMAT = "%s원"
+        const val PROFIT_FORMAT = "-%s원"
+        const val GIFT_PROFIT_FORMAT = "증정 이벤트: -%d원"
     }
 }
