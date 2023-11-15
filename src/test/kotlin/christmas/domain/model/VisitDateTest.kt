@@ -1,6 +1,5 @@
-package christmas
+package christmas.domain.model
 
-import christmas.domain.model.VisitDate
 import christmas.domain.error.ErrorType
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
-internal class DateTest {
+internal class VisitDateTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 32])
