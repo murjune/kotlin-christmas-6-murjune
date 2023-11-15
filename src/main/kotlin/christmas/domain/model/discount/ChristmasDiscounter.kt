@@ -1,10 +1,10 @@
 package christmas.domain.model.discount
 
-import christmas.domain.model.Date
+import christmas.domain.model.VisitDate
 import christmas.domain.model.discount.type.DiscountType
 
 
-class ChristmasDiscounter(private val date: Date, private val dayOfMonth: Int) :
+class ChristmasDiscounter(private val date: VisitDate, private val dayOfMonth: Int) :
     Discounter {
 
     override fun discount(): Discount {

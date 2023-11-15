@@ -1,12 +1,11 @@
 package christmas.controller
 
-import camp.nextstep.edu.missionutils.Console
 import christmas.controller.error.ErrorHandler
 import christmas.controller.error.InputErrorHandler
 import christmas.controller.format.PriceFormatter
 import christmas.controller.validator.DateInputValidator
 import christmas.domain.model.Badge
-import christmas.domain.model.Date
+import christmas.domain.model.VisitDate
 import christmas.domain.model.discount.ChristmasDiscounter
 import christmas.domain.model.discount.DailyDiscounter
 import christmas.domain.model.discount.Discount
@@ -23,7 +22,7 @@ class ChristmasPromotionController {
     private val inputView = InputView()
     private val outPutView = OutPutView()
     private val errorHandler: ErrorHandler = InputErrorHandler()
-    private lateinit var today: Date
+    private lateinit var today: VisitDate
     private var dayOfMonth = 0
     private val menuBoard: MenuBoard = MenuBoard(MenuService.provideMenus())
     private val orderTransformer = TotalOrderTransformer(menuBoard)
@@ -56,7 +55,7 @@ class ChristmasPromotionController {
                 val day = inputView.readDate()
                 DateInputValidator().validate(day)
                 dayOfMonth = day.toInt()
-                today = Date(dayOfMonth)
+                today = VisitDate(dayOfMonth)
             },
             callback = { showDateInputView() },
             write = { outPutView.writeError(it) },

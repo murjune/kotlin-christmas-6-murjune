@@ -2,7 +2,7 @@ package christmas.domain.model
 
 import christmas.domain.type.ErrorType
 
-data class Date(private val dayOfMonth: Int, private val specialDays: List<Int> = listOf(3, 10, 17, 24, 25, 31)) {
+data class VisitDate(private val dayOfMonth: Int, private val specialDays: List<Int> = listOf(3, 10, 17, 24, 25, 31)) {
     init {
         require(dayOfMonth in DAY_RANGE) { ErrorType.DATE.toString() }
     }

@@ -1,6 +1,6 @@
 package christmas.domain.model.discount
 
-import christmas.domain.model.Date
+import christmas.domain.model.VisitDate
 import christmas.domain.model.discount.type.DiscountType
 import christmas.domain.model.menu.Menu
 import christmas.domain.type.MealType
@@ -12,7 +12,7 @@ internal class DailyDiscounterTest {
     @Test
     fun `평일은 디저트 메뉴 개당 2,023원 할인`() {
         // given
-        val weekDate = Date(3)
+        val weekDate = VisitDate(3)
         val discounter =
             DailyDiscounter(
                 weekDate, listOf(
@@ -31,7 +31,7 @@ internal class DailyDiscounterTest {
     @Test
     fun `주말은 메인 메뉴 개당 2,023원 할인`() {
         // given
-        val weekendDate = Date(1)
+        val weekendDate = VisitDate(1)
         val discounter =
             DailyDiscounter(
                 weekendDate, listOf(
