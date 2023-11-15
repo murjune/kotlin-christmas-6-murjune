@@ -1,7 +1,7 @@
 package christmas.domain.model
 
 import christmas.domain.model.menu.Menu
-import christmas.domain.type.MealType
+import christmas.domain.model.menu.type.MealType
 
 class Gift private constructor(private val menu: Menu?, private val count: Int) {
 

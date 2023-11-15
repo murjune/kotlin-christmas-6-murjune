@@ -1,6 +1,6 @@
 package christmas.domain.model.menu
 
-import christmas.domain.type.MealType
+import christmas.domain.model.menu.type.MealType
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
 package christmas.service
 
-import christmas.domain.type.MealType
+import christmas.domain.model.menu.type.MealType
 import christmas.domain.model.menu.Menu
 
 object MenuService {

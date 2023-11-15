@@ -3,7 +3,7 @@ package christmas.domain.model.discount
 import christmas.domain.model.VisitDate
 import christmas.domain.model.discount.type.DiscountType
 import christmas.domain.model.menu.Menu
-import christmas.domain.type.MealType
+import christmas.domain.model.menu.type.MealType
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
 

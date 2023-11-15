@@ -1,6 +1,6 @@
 package christmas.domain.model.menu
 
-import christmas.domain.type.MealType
+import christmas.domain.model.menu.type.MealType
 
 data class Menu(private val name: String, private val price: Int, private val type: MealType) {
 

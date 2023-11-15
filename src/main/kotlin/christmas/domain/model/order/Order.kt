@@ -2,7 +2,7 @@ package christmas.domain.model.order
 
 import christmas.domain.model.menu.Menu
 import christmas.domain.error.ErrorType
-import christmas.domain.type.MealType
+import christmas.domain.model.menu.type.MealType
 
 data class Order(private val menu: Menu, private val menuCount: Int) {
 
