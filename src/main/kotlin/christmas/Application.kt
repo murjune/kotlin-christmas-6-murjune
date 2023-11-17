@@ -1,5 +1,7 @@
 package christmas
 
+import christmas.controller.ChristmasEventPlannerController
+
 fun main() {
-    TODO("프로그램 구현")
+    ChristmasEventPlannerController().start()
 }
